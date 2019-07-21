@@ -1,2 +1,7 @@
 ---
 # defaults file for role-node-dev-env
+
+# $NVM_DIR environment variable, or where you want the nvm directory placed
+nvm_dir: ~/.local/share/nvm
+# uncomment this to reset the default to the nvm.sh default
+# nvm_dir: ~/.nvm

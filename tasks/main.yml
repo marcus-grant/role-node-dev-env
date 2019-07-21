@@ -1,2 +1,55 @@
 ---
 # tasks file for role-node-dev-env
+# TODO: Remove me
+- name: Molecule Hello World!
+  debug:
+    msg: "{{ lookup('env','NVM_DIR') }}"
+
+# - name: Get uname
+#   shell: uname -a
+#   register: varr
+
+# - name: Show uname
+#   debug:
+#     msg: "{{ varr.stdout_lines }}"
+
+
+- name: get stats on nvm
+  stat:
+    path: "{{ nvm_dir }}"
+  register: nvm_stat
+
+# - name: get current user as variable
+#   local_action: command whoami
+#   register: current_username
+
+- debug:
+    msg: "{{ nvm_dir.stat.exists }}"
+
+# - name: create nvm directory
+#   file:
+#     path: "{{ nvm_dir }}"
+#     group: "{{ current_username }}"
+#     owner: "{{ current_username }}"
+#     mode: 0750
+#     recurse: yes
+#     state: directory
+#   when: not nvm_stat.stat.exists
+
+# - name: nvm | download nvm script
+#   get_url:
+#     dest: "{{ nvm_dest }}"
+#     url: https://raw.githubusercontent.com/creationix/nvm/{{ nvm_version }}/nvm.sh
+
+# - import_tasks: nvm_permission.yml
+
+# TODO maybe not use this till publishing to galaxy
+# - name: NVM | nvm | ensure ~/.bashrc exists
+#   copy:
+#     content: ""
+#     dest: "{{ nvm_working_path }}/.bashrc"
+#     force: no
+
+# - name: NVM | nvm | add nvm to ~/.bashrc
+#   lineinfile: dest="{{ nvm_working_path }}/.bashrc" line="source ~/.nvm/nvm.sh"
+#   when: nvm_add_path_to_bashrc

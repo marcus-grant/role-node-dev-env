@@ -1,13 +1,19 @@
 ---
 dependency:
   name: galaxy
+
 driver:
   name: docker
+
 lint:
   name: yamllint
+
 platforms:
-  - name: instance
-    image: centos:7
+  - name: test_arch_with_nvm_dir
+    image: archlinux/base # will test NVM_DIR being defined
+    env:
+      NVM_DIR: ~/.local/share/nvm
+
 provisioner:
   name: ansible
   lint:
